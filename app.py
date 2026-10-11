@@ -96,7 +96,7 @@ if st.button("Generate Severity Diagnosis", type="primary", use_container_width=
     if rounded_stage == 0:
         st.success(f"🟢 **Diagnosis: Stage {rounded_stage} (Healthy)**")
         st.write("No significant coronary artery blockage or narrowing detected.")
-    elif rounded_stage in:
+    elif rounded_stage in [1, 2, 3]:
         st.warning(f"🟡 **Diagnosis: Stage {rounded_stage} (Mild to Moderate Disease)**")
         st.write("Early to mid-stage vessel constriction noted. Clinical monitoring advised.")
     else:
