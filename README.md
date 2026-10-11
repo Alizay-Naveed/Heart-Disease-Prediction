@@ -39,8 +39,8 @@ Follow these steps to run the application workspace locally on your system:
 
 ### 1. Clone the Space Matrix
 ```bash
-git clone https://github.com
-cd YOUR_REPO_NAME
+git clone https://github.com/Alizay-Naveed/Heart-Disease-Prediction.git
+cd Heart-Disease-Prediction
 ```
 
 ### 2. Activate Dependencies
