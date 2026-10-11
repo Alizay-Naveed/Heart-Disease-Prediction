@@ -23,9 +23,9 @@ except FileNotFoundError:
 # =====================================================================
 # 2. WEB USER INTERFACE SYSTEM
 # =====================================================================
-st.set_page_config(page_title="Heart Disease Severity App", page_icon="🫀", layout="centered")
+st.set_page_config(page_title="Heart Disease Prediction System", page_icon="🫀", layout="centered")
 
-st.title("🫀 Coronary Vessel Severity Predictor")
+st.title("🫀 Heart Disease Prediction System")
 st.write("Input patient clinical metrics below to calculate the estimated blockage severity stage.")
 st.markdown("---")
 
