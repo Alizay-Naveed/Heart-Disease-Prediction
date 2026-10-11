@@ -59,6 +59,7 @@ streamlit run app.py
 
 ## 📁 Repository Structure
 ```text
+├── Heart Disease Prediction System.ipynb  # Interactive Jupyter Notebook detailing EDA, model tuning, and evaluation
 ├── app.py                     # Main Streamlit web browser user interface script
 ├── heart_disease_model.pkl    # Serialized SVR predictive backend model binary
 ├── scaler.pkl                 # Serialized StandardScaler training configuration
