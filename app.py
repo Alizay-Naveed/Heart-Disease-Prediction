@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import numpy as np
 import pickle
 
@@ -73,17 +74,24 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 if st.button("Generate Severity Diagnosis", type="primary", use_container_width=True):
     
-    # 1. Structure the vector to match the training shape: ['cp', 'thalach', 'oldpeak', 'ca']
-    raw_metrics = np.array([[cp, thalach, oldpeak, ca]])
+    # 1. Build a dictionary forcing the exact data types from your notebook training step
+    patient_data = {
+        'cp': [int(cp)],
+        'thalach': [int(thalach)],
+        'oldpeak': [float(oldpeak)],
+        'ca': [int(ca)]
+    }
     
-    # 2. Scale the metrics using the rules saved in step 5.5
-    scaled_metrics = data_scaler.transform(raw_metrics)
+    # 2. Convert to a DataFrame with explicit indices
+    raw_df = pd.DataFrame(patient_data)
     
-    # 3. Extract the raw continuous decimal output from your SVR model
+    # 3. Scale the metrics using your loaded scaler tool configuration
+    scaled_metrics = data_scaler.transform(raw_df)
+    
+    # 4. Extract the continuous regression decimal output from your SVR model
     decimal_prediction = float(svr_model.predict(scaled_metrics)[0])
     
-    # 4. FRONTEND ROUNDING AND CLIPPING OPERATION
-    # Round to nearest whole integer stage and clip strictly within the dataset boundaries (0-4)
+    # 5. FRONTEND ROUNDING AND CLIPPING OPERATION
     rounded_stage = int(np.clip(np.round(decimal_prediction), 0, 4))
     
     # =====================================================================
@@ -96,7 +104,7 @@ if st.button("Generate Severity Diagnosis", type="primary", use_container_width=
     if rounded_stage == 0:
         st.success(f"🟢 **Diagnosis: Stage {rounded_stage} (Healthy)**")
         st.write("No significant coronary artery blockage or narrowing detected.")
-    elif rounded_stage in [1, 2, 3]:
+    elif rounded_stage >= 1 and rounded_stage <= 3:
         st.warning(f"🟡 **Diagnosis: Stage {rounded_stage} (Mild to Moderate Disease)**")
         st.write("Early to mid-stage vessel constriction noted. Clinical monitoring advised.")
     else:
