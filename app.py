@@ -69,7 +69,7 @@ with col2:
 # =====================================================================
 # 3. BACKEND INFERENCE & FRONTEND PROCESSING LAYER
 # =====================================================================
-st.markdown("<br>", unsafe_allow_code=True)
+st.markdown("<br>", unsafe_allow_html=True)
 
 if st.button("Generate Severity Diagnosis", type="primary", use_container_width=True):
     
@@ -104,7 +104,7 @@ if st.button("Generate Severity Diagnosis", type="primary", use_container_width=
         st.write("Significant multi-vessel obstruction detected. High risk factor present.")
         
     # 5. INTEGRATED DYNAMIC PROGRESS BAR & DECIMAL MARKER
-    st.markdown("<br>", unsafe_allow_code=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.write(f"**Continuous Severity Metric Value:** `{decimal_prediction:.2f}` / 4.00")
     
     # Normalize the decimal value to a percentage (0.0 to 1.0) so the Streamlit bar fills accurately
